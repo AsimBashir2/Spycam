@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#1a344c"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/Spy_Cam_Car"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center"
+        android:text="Spy Cam Car"
+        android:textSize="80sp"
+        android:textStyle="italic"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="35dp"
+
+        />
+
+    <TextView
+        android:id="@+id/enter_ip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_alignStart="@+id/ip_address"
+        android:layout_marginBottom="15dp"
+        android:text="Enter IP Address"
+        android:textSize="25sp"
+        android:textStyle="italic" />
+
+    <EditText
+        android:id="@+id/ip_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_des"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/text_background"
+        android:hint="192.168.1.2:21567"
+        android:digits="0123456789.:"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        />
+
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/btn_check"
+        android:text="Submit"
+        android:textSize="25sp"
+
+    />
+
+</LinearLayout>
