@@ -1,0 +1,78 @@
+import RPi.GPIO as GPIO
+import time
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+
+ControlPin = [4,14,27,15]
+def init():
+    for pin in ControlPin:
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(pin,GPIO.OUT)
+        GPIO.output(pin,0)
+
+seq = [  [1,0,0,0],
+         [1,1,0,0],
+         [0,1,0,0],
+         [0,1,1,0],
+         [0,0,1,0],
+         [0,0,1,1],
+         [0,0,0,1],
+         [1,0,0,1]  ]
+
+
+seq2 = [  [1,0,0,1],
+          [0,0,0,1],
+          [0,0,1,1],
+          [0,0,1,0],
+          [0,1,1,0],
+          [0,1,0,0],
+          [1,1,0,0],
+          [1,0,0,0]  ]
+
+def anticlockwise():
+    init()
+    for i in range(64):
+        for halfstep in range(8):
+            for pin in range(4):
+                GPIO.output(ControlPin[pin] , seq[halfstep] [pin])
+            time.sleep(0.001)
+            #GPIO.cleanup()
+
+            
+    
+def clockwise():
+    init()
+    for i in range(64):
+        for halfstep in range(8):
+            for pin in range(4):
+                GPIO.output(ControlPin[pin] , seq2[halfstep] [pin])
+            time.sleep(0.001)
+GPIO.cleanup()
+
+'''
+print "clock wise rotation"
+clockwise()
+time.sleep(1)
+print "anti clock wise"
+anticlockwise()
+'''
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

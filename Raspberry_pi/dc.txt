@@ -1,0 +1,53 @@
+
+import RPi.GPIO as gpio
+import time
+
+def init():
+    gpio.setmode(gpio.BCM)
+    gpio.setup(17, gpio.OUT)
+    gpio.setup(22, gpio.OUT)
+    gpio.setup(23, gpio.OUT)
+    gpio.setup(24, gpio.OUT)
+
+def forward(tf):
+    init()
+    gpio.output(17, 0)
+    gpio.output(22, 1)
+    gpio.output(23, 1)
+    gpio.output(24, 0)
+
+def reverse(tf):
+    init()
+    gpio.output(17, 1)
+    gpio.output(22, 0)
+    gpio.output(23, 0)
+    gpio.output(24, 1)
+    
+def right(tf):
+    init()
+    gpio.output(17, 0)
+    gpio.output(22, 1)
+    gpio.output(23, 0)
+    gpio.output(24, 0)
+    
+def left(tf):
+    init()
+    gpio.output(17, 0)
+    gpio.output(22, 0)
+    gpio.output(23, 1)
+    gpio.output(24, 0)
+    
+
+def stop():
+    init()
+    gpio.output(17, 0)
+    gpio.output(22, 0)
+    gpio.output(23, 0)
+    gpio.output(24, 0)
+    gpio.cleanup()
+'''try:
+    forward(0.5)
+    stop()
+except KeyboradInterrupt:
+    stop()
+'''

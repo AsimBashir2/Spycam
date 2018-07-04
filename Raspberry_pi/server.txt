@@ -1,0 +1,56 @@
+import stepper
+import DCmotor
+from socket import *
+from time import ctime
+import RPi.GPIO as GPIO
+
+ctrCmd = ['forward','backward','right','left', 'stop','clockwise','aclockwise']
+
+HOST = ''
+PORT = 21567
+BUFSIZE = 1024
+ADDR = (HOST,PORT)
+
+tcpSerSock = socket(AF_INET, SOCK_STREAM)
+print 'socket created'
+tcpSerSock.bind(ADDR)
+tcpSerSock.listen(5)
+
+while True:
+    print 'waiting for connection'
+    tcpCliSock,addr = tcpSerSock.accept()
+    print 'connection from:',addr
+    try:
+        while True:
+            data = ''
+            data = tcpCliSock.recv(BUFSIZE)
+            data = data.encode(encoding='UTF-8',errors='strict')
+            if not data:
+                break
+            if data == ctrCmd[0]:
+                DCmotor.forward(1)
+                print 'Car moving forward'
+            if data == ctrCmd[1]:
+                DCmotor.reverse(0.5)
+                print 'Car moving backward'
+            if data == ctrCmd[2]:
+                DCmotor.right(0.5)
+                print "Car moving right"
+            if data == ctrCmd[3]:
+                DCmotor.left(0.5)
+                print "Car moving left"
+            if data == ctrCmd[4]:
+                DCmotor.stop()
+                print "Car has stopped"
+            if data == ctrCmd[5]:
+                stepper.clockwise()
+                GPIO.cleanup()
+                print "camera rotate clockwise"
+            if data == ctrCmd[6]:
+                stepper.anticlockwise()
+                GPIO.cleanup()
+                print "camera rotate anti_clockwise"
+    except KeyboardInterrupt:
+
+        LedAndroid.close()
+tcpSerSock.close();
